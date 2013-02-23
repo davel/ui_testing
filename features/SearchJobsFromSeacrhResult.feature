@@ -1,7 +1,7 @@
-Feature: Jobs Search from home page
+Feature: Jobs Search from result page
     In order to show the search functionality
     As a user
-    I want to search fro jobs
+    I want to search for jobs
 
 Scenario Outline: Search for jobs from te home page
     Given I am on the jobs search result page
