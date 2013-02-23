@@ -1,7 +1,7 @@
 class JobsHomePage
   include PageObject
   
-  direct_url "#{UK_BASE_URL}/jobs"
+  direct_url "#{UK_BASE_URL}jobs"
   expected_title "Jobs in London, the UK &amp; Beyond | Adzuna"
 
   text_field :search_box, :id => 'w'

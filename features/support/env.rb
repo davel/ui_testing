@@ -16,7 +16,10 @@ client.timeout = 180
   
 browser = Watir::Browser.new driver, :http_client => client
 
-Before { @browser = browser }
+Before {
+    @browser = browser
+    @visited_page = JobsHomePage # Defaulting visited page to jobs home page
+}
 
 After do |scenario|
   Dir::mkdir('screenshots') if not File.directory?('screenshots')
