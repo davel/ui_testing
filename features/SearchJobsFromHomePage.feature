@@ -9,5 +9,5 @@ Scenario Outline: Search for jobs from the home page
     Then I should see at least <expected number of> results
     Scenarios:
       | location     | expected number of  |
-      | london       | 100000              |
+      | london       | 80000               |
       | scotland     | 20000               |
