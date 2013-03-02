@@ -8,8 +8,22 @@ Given /^I am on the jobs search result page$/ do
   @visited_page = JobsSearchResultsPage
 end
 
+Given /^I am on the jobs (\w\w) advanced search page$/ do |country|
+  visit eval("JobsAdvSearch#{country}")
+  @visited_page = eval("JobsAdvSearch#{country}")
+end
+
 When /^I search for jobs in (\w+)$/ do |search_term|
   on @visited_page do |page| page.search_for search_term end
+end
+
+When /^I search for jobs with the criteria:$/ do |table|
+  criteria = table.rows_hash
+  on @visited_page do |page|
+     page.search_for  :contract_type => criteria['Contract type'],
+                      :hours         => criteria['Hours'],
+                      :radious       => criteria['Radious'].to_i
+  end
 end
 
 Then /^I should be able to get to the browse categories page$/ do
@@ -27,6 +41,13 @@ end
 
 Then /^I should see at least ([\d,]+) results$/ do |exp_num_results|
   on JobsSearchResultsPage do |page|
+      got_results = page.search_results.gsub(",","")
+      got_results.to_i.should >= exp_num_results.to_i
+  end
+end
+
+Then /^I should see at least ([\d,]+) results from adv page$/ do |exp_num_results|
+  on @visited_page do |page|
       got_results = page.search_results.gsub(",","")
       got_results.to_i.should >= exp_num_results.to_i
   end
