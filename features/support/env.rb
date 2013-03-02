@@ -1,4 +1,5 @@
 UK_BASE_URL = "http://www.adzuna.co.uk/"
+DE_BASE_URL = "http://www.adzuna.de/"
 
 require 'watir-webdriver'
 require 'page-object'
@@ -18,7 +19,7 @@ browser = Watir::Browser.new driver, :http_client => client
 
 Before {
     @browser = browser
-    @visited_page = JobsHomePage # Defaulting visited page to jobs home page
+    @visited_page = JobsHomePageUK # Defaulting visited page to jobs home page
 }
 
 After do |scenario|

@@ -1,6 +1,6 @@
-Given /^I am on the jobs home page$/ do
-  visit JobsHomePage
-  @visited_page = JobsHomePage
+Given /^I am on the jobs (\w\w) home page$/ do |country|
+  visit eval("JobsHomePage#{country}")
+  @visited_page = eval("JobsHomePage#{country}")
 end
 
 Given /^I am on the jobs search result page$/ do
@@ -12,9 +12,16 @@ When /^I search for jobs in (\w+)$/ do |search_term|
   on @visited_page do |page| page.search_for search_term end
 end
 
-When /^I browse jobs category (.*?)$/ do |category|
+Then /^I should be able to get to the browse categories page$/ do
   on @visited_page do |page|
-     page.go_to_browse_page category
+     page.categories_list.each do |category|
+        page.go_to_browse_page category
+        on JobsBrowsePage do |cat_page|
+            category_name = category.gsub("-"," ")
+            cat_page.header.should match(%r{#{category_name}}i)
+        end
+        visit @visited_page
+     end
   end
 end
 
@@ -22,12 +29,5 @@ Then /^I should see at least ([\d,]+) results$/ do |exp_num_results|
   on JobsSearchResultsPage do |page|
       got_results = page.search_results.gsub(",","")
       got_results.to_i.should >= exp_num_results.to_i
-  end
-end
-
-Then /^I should get the browse (.*?) page$/ do |category|
-  on JobsBrowsePage do |page|
-    category_name = category.gsub("-"," ")
-    page.header.should match(%r{Browse #{category_name}}i)
   end
 end

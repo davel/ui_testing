@@ -4,7 +4,7 @@ Feature: Jobs Search from home page
     I want to search fro jobs
 
 Scenario Outline: Search for jobs from the home page
-    Given I am on the jobs home page
+    Given I am on the jobs UK home page
     When I search for jobs in <location>
     Then I should see at least <expected number of> results
     Scenarios:

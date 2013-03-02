@@ -4,10 +4,10 @@ Feature: Jobs browse pages
     I want to browse through jobs
 
 Scenario Outline: Browse through jobs category from the home page
-    Given I am on the jobs home page
-    When I browse jobs category <category>
-    Then I should get the browse <category> page
-    Scenarios:
-      | category          |
-      | it-jobs           |
-      | engineering-jobs  |
+    Given I am on the jobs <country> home page
+    Then I should be able to get to the browse categories page
+
+Examples:
+     | country |
+     | UK      |
+     | DE      |

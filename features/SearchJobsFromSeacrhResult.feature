@@ -4,7 +4,7 @@ Feature: Jobs Search from result page
     I want to search for jobs
 
 Scenario Outline: Search for jobs from the result page
-    Given I am on the jobs search result page
+    Given I am on the jobs UK home page
     When I search for jobs in <location>
     Then I should see at least <expected number of> results
     Scenarios:
