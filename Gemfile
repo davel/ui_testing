@@ -1,6 +1,7 @@
-source :rubygems
+source 'https://rubygems.org'
 gem 'rake'
 gem 'cucumber'
 gem 'rspec'
 gem 'page-object'
 gem 'watir-webdriver'
+gem 'activerecord'
