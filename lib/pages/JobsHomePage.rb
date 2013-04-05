@@ -3,7 +3,7 @@ class JobsHomePage
 
   text_field :search_box, :id => 'w'
   a :search, :class => 'subm'
-
+  a :show_categories, :id => 'trigger_categories'
   div :category_list, :class => 'hc'
 
   def search_for search_term

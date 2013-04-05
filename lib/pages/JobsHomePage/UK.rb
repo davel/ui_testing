@@ -7,7 +7,7 @@ class JobsHomePageUK < JobsHomePage
   categories = ['it-jobs', 'sales-jobs']
   categories.each { |category|
       link_name = category.gsub("-","_")
-      link link_name, :href => "#{UK_BASE_URL}jobs/browse/#{category}"
+      link link_name, :xpath => "//div[@class='modal_links']//a[@href='#{UK_BASE_URL}jobs/browse/#{category}']"
   }
 
   def categories_list
