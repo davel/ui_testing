@@ -1,3 +1,4 @@
+@selenium
 Feature: Advanced Jobs Search
     In order to show the advanced search functionality
     As a user

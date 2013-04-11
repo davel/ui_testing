@@ -17,6 +17,14 @@ client.timeout = 180
   
 browser = Watir::Browser.new driver, :http_client => client
 
+# Saucelab set up
+if ENV['USE_SAUCE'].eql? 'true'
+    require 'sauce/cucumber'
+    Sauce.config do |c|
+      c[:start_tunnel] = true
+    end
+end
+
 Before {
     @browser = browser
     @visited_page = JobsHomePageUK # Defaulting visited page to jobs home page

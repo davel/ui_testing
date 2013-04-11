@@ -1,3 +1,4 @@
+@selenium
 Feature: Jobs Search from home page
     In order to show the search functionality
     As a user

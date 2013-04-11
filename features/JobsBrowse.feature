@@ -1,3 +1,4 @@
+@selenium
 Feature: Jobs browse pages
     In order to show the browse functionality
     As a user

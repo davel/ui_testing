@@ -1,0 +1,3 @@
+---
+default: USE_SAUCE=false
+sauce: USE_SAUCE=true
