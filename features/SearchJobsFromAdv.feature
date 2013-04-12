@@ -4,10 +4,12 @@ Feature: Advanced Jobs Search
     As a user
     I want to search for jobs
 
-Scenario: Search for jobs from the advanced search page
-    Given I am on the jobs UK advanced search page
-    When I search for jobs with the criteria:
-      | Contract type | permanent |
-      | Hours         | part time |
-      | Radious       | 5 miles   |
-    Then I should see at least 500 results
+Scenario Outline: Search for jobs from the advanced search page
+    Given I am on the jobs <country> advanced search page
+    When I search for jobs with this criteria: <radious>, <contract_type>, <hours>
+    Then I should see at least <results> results
+
+Examples:
+      |country | radious | contract_type | hours | results |
+      | UK     | 5       | permanent     | full  | 500     |
+      | DE     | 5       | permanent     | full  | 500     |
