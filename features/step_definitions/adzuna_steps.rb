@@ -27,11 +27,11 @@ end
 
 Then /^I should be able to get to the browse categories page$/ do
   on @visited_page do |page|
-     page.categories_list.each do |category|
+     page.categories.each do |category|
         page.show_categories
-        page.go_to_browse_page category
+        page.go_to_browse_page category,@visited_page.country_code
         on JobsBrowsePage do |cat_page|
-            category_name = category.gsub("-"," ")
+            category_name = category.label
             cat_page.header.should match(%r{#{category_name}}i)
         end
         visit @visited_page

@@ -4,10 +4,12 @@ DE_BASE_URL = "http://www.adzuna.de/"
 require 'watir-webdriver'
 require 'page-object'
 require 'page-object/page_factory'
+require 'active_record'
+require 'test-factory'
 
 $: << File.dirname(__FILE__)+'/../../lib'
 
-require 'pages.rb'
+require 'includes.rb'
 
 World PageObject::PageFactory
 
