@@ -3,9 +3,9 @@ Given /^I am on the jobs (\w\w) home page$/ do |country|
   @visited_page = eval("JobsHomePage#{country}")
 end
 
-Given /^I am on the jobs search result page$/ do
-  visit JobsSearchResultsPage
-  @visited_page = JobsSearchResultsPage
+Given /^I am on the jobs (\w\w) search result page$/ do |country|
+  visit eval("JobsSearchResultsPage#{country}")
+  @visited_page = eval("JobsSearchResultsPage#{country}")
 end
 
 Given /^I am on the jobs (\w\w) advanced search page$/ do |country|
