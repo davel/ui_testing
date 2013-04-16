@@ -32,7 +32,9 @@ Then /^I should be able to get to the browse categories page$/ do
         page.show_categories
         page.go_to_browse_page category,@visited_page.country_code
         on JobsBrowsePage do |cat_page|
-            category_name = category.label
+            cc = page.class.country_code
+            tag_column = "category.tag_#{cc}"
+            category_name = Category.get_label_from_tag eval(tag_column)
             cat_page.header.should match(%r{#{category_name}}i)
         end
         visit @visited_page
