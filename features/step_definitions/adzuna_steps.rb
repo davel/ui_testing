@@ -17,11 +17,12 @@ When /^I search for jobs in (\w+)$/ do |search_term|
   on @visited_page do |page| page.search_for search_term end
 end
 
-When /^I search for jobs with this criteria: (\d+), (\w+), (\w+)$/ do |radious, contract_type, hours|
+When /^I search for jobs with this criteria: (\d+), (\w+), (\w+), (\d)$/ do |radious, contract_type, hours, freshness_days|
   on @visited_page do |page|
      page.search_for  :contract_type => contract_type,
                       :radious       => radious,
-                      :hours         => hours
+                      :hours         => hours,
+                      :freshness_days=> freshness_days
   end
 end
 
