@@ -17,13 +17,19 @@ When /^I search for jobs in (\w+)$/ do |search_term|
   on @visited_page do |page| page.search_for search_term end
 end
 
-When /^I search for jobs with this criteria: (\d+) from (\w+), (\w+), (\w+), (\d)$/ do |radious, location, contract_type, hours, freshness_days|
+When /^I search for jobs with this criteria: (\d+) from (\w+), (\w+), (\w+), (\d+), (\w+), (\w+), (\w+), (\w+), (\w+), (\w+)$/ do |radious, location, contract_type, hours, freshness_days, all_words, exact_match, or_matches, exclude_match, include_in_title, company|
   on @visited_page do |page|
-     page.search_for  :contract_type => contract_type,
-                      :radious       => radious,
-                      :location      => location,
-                      :hours         => hours,
-                      :freshness_days=> freshness_days
+     page.search_for  :contract_type     => contract_type,
+                      :radious           => radious,
+                      :location          => location,
+                      :hours             => hours,
+                      :freshness_days    => freshness_days,
+                      :all_words         => all_words,
+                      :exact_match       => exact_match,
+                      :or_matches        => or_matches,
+                      :exclude_match     => exclude_match,
+                      :include_in_title  => include_in_title,
+                      :company           => company
   end
 end
 
