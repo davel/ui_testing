@@ -10,3 +10,5 @@ gem "capybara", "< 2.0.3"
 gem 'sauce-connect'
 gem 'mysql2'
 gem 'i18n', '= 0.6.1'
+gem 'xpath', '~>1.0.0'
+gem 'test-factory'
