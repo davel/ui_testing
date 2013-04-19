@@ -1,3 +1,5 @@
+#### GIVEN
+
 Given /^I am on the jobs (\w\w) home page$/ do |country|
   visit eval("JobsHomePage#{country}")
   @visited_page = eval("JobsHomePage#{country}")
@@ -12,6 +14,15 @@ Given /^I am on the jobs (\w\w) advanced search page$/ do |country|
   visit eval("JobsAdvSearch#{country}")
   @visited_page = eval("JobsAdvSearch#{country}")
 end
+
+Given /^I am on the jobs (\w\w) (\w+) stats page$/ do |country, stats_type|
+  page_name = "JobStats#{stats_type.capitalize}#{country}"
+  visit eval(page_name) do |page|
+    @visited_page = page
+  end
+end
+
+#### WHEN
 
 When /^I search for jobs in (\w+)$/ do |search_term|
   on @visited_page do |page| page.search_for search_term end
@@ -34,6 +45,8 @@ When /^I search for jobs with this criteria: (\d+) from (\w+), (\w+), (\w+), (\d
                       :sorting           => sorting
   end
 end
+
+#### THEN
 
 Then /^I should be able to get to the browse categories page$/ do
   on @visited_page do |page|
@@ -65,4 +78,10 @@ Then /^I should see at least ([\d,]+) results from adv page$/ do |exp_num_result
       got_results = page.search_results.gsub(",","")
       got_results.to_i.should >= exp_num_results.to_i
   end
+end
+
+
+Then /^I should be able to see stats$/ do
+  not_found_string = @visited_page.get_not_found_string
+  @visited_page.title.should_not match(not_found_string)
 end

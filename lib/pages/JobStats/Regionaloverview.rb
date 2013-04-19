@@ -1,0 +1,3 @@
+class JobStatsRegionaloverview < JobStats
+
+end
