@@ -19,6 +19,10 @@ class JobsAdvSearch
   select_list :distance,                 :id => 'adv_dist'
   text_field  :location,                 :id => 'adv_l'
 
+  select_list :per_page,                 :id => 'adv_per_page'
+
+  select_list :sorting,                  :id => 'sorting'
+
   a :search, :class => 'btn'
 
   def search_for criteria
@@ -75,11 +79,31 @@ class JobsAdvSearch
         self.location = criteria[:location]
     end
 
+    per_page = criteria[:per_page].to_i
+    if [10,25,50].include?(per_page)
+        self.per_page = criteria[:per_page]
+    end
+
+    sorting_label = self.get_sorting_label criteria[:sorting]
+    if sorting_label
+        self.sorting = sorting_label
+    end
+
     search
   end
 
   def get_distance_label dist_radious
     "within #{dist_radious} miles of"
+  end
+
+  def get_sorting_label sorting
+    tag_to_label = {
+        'relevant' => 'Most relevant',
+        'recent'   => 'Most recent',
+        'salary_h' => 'Highest salary',
+        'salary_l' => 'Lowest salary'    
+    }
+    tag_to_label[sorting]
   end
   
 end
