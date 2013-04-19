@@ -8,6 +8,7 @@ gem 'watir-webdriver'
 gem 'activerecord'
 gem "capybara", "< 2.0.3"
 gem 'sauce-connect'
+gem 'sauce-cucumber'
 gem 'mysql2'
 gem 'i18n', '= 0.6.1'
 gem 'xpath', '~>1.0.0'

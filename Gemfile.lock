@@ -92,6 +92,9 @@ GEM
       selenium-webdriver (>= 0.1.2)
     sauce-connect (2.4.0)
       sauce (~> 2.4.0)
+    sauce-cucumber (2.3.1)
+      cucumber (>= 1.2.0)
+      sauce (>= 2.3.0)
     selenium-webdriver (2.32.1)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
@@ -122,6 +125,7 @@ DEPENDENCIES
   rake
   rspec
   sauce-connect
+  sauce-cucumber
   test-factory
   watir-webdriver
   xpath (~> 1.0.0)
