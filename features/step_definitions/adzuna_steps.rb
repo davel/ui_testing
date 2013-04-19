@@ -57,7 +57,6 @@ Then /^I should be able to get to the browse categories page$/ do
             cc = page.class.country_code
             tag_column = "category.tag_#{cc}"
             category_name = Category.get_label_from_tag eval(tag_column)
-            puts "header " + cat_page.header
             cat_page.header.should match(%r{#{category_name}}i)
         end
         visit @visited_page

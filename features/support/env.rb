@@ -13,19 +13,25 @@ require 'includes.rb'
 
 World PageObject::PageFactory
 
-driver = (ENV['WEB_DRIVER'] || :firefox).to_sym
 client = Selenium::WebDriver::Remote::Http::Default.new
 client.timeout = 180
-  
-browser = Watir::Browser.new driver, :http_client => client
 
+browser_params = {:http_client => client}
 # Saucelab set up
 if ENV['USE_SAUCE'].eql? 'true'
     require 'sauce/cucumber'
     Sauce.config do |c|
       c[:start_tunnel] = true
     end
+    driver = :remote
+    caps = Selenium::WebDriver::Remote::Capabilities.firefox
+    caps[:name] = 'Adzuna tests'
+    browser_params[:desired_capabilities] = caps
+    browser_params[:url] = "http://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:80/wd/hub"
 end
+
+driver ||= :firefox
+browser = Watir::Browser.new( driver.to_sym, browser_params)
 
 Before {
     @browser = browser
