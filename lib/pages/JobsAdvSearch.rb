@@ -9,6 +9,9 @@ class JobsAdvSearch
   radio_button :freshness_3,             :id => 'adv_freshness_3'
   radio_button :freshness_7,             :id => 'adv_freshness_7'
 
+  select_list :distance,                 :id => 'adv_dist'
+  text_field  :location,                 :id => 'adv_l'
+
   a :search, :class => 'btn'
 
   def search_for criteria
@@ -34,7 +37,18 @@ class JobsAdvSearch
         else
     end
 
+    dist_radious = criteria[:radious].to_i
+    if [5,10,25,50,100].include?(dist_radious)
+        puts self.inspect
+        self.distance = self.get_distance_label dist_radious
+        self.location = criteria[:location]
+    end
+
     search
   end
 
+  def get_distance_label dist_radious
+    "within #{dist_radious} miles of"
+  end
+  
 end
