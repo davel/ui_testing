@@ -20,12 +20,13 @@ browser_params = {:http_client => client}
 # Saucelab set up
 if ENV['USE_SAUCE'].eql? 'true'
     require 'sauce/cucumber'
-    Sauce.config do |c|
-      c[:start_tunnel] = true
-    end
     driver = :remote
     caps = Selenium::WebDriver::Remote::Capabilities.firefox
-    caps[:name] = 'Adzuna tests'
+    caps[:name] = 'Test ' + Time.now.strftime("%Y-%m-%d-%H:%M")
+    caps[:build] = Time.now.strftime("%Y-%m-%d-%H:%M")
+    caps['record-video'] = false
+    caps['video-upload-on-pass'] = false
+    caps['record-screenshots'] = false
     browser_params[:desired_capabilities] = caps
     browser_params[:url] = "http://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:80/wd/hub"
 end
