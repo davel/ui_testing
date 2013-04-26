@@ -13,3 +13,4 @@ gem 'mysql2'
 gem 'i18n', '= 0.6.1'
 gem 'xpath', '~>1.0.0'
 gem 'test-factory'
+gem "parallel_tests", :group => :development
