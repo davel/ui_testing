@@ -1,3 +1,4 @@
 ---
 default: USE_SAUCE=false
 sauce: USE_SAUCE=true
+headless: HEADLESS=true

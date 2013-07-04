@@ -31,6 +31,15 @@ if ENV['USE_SAUCE'].eql? 'true'
     browser_params[:url] = "http://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:80/wd/hub"
 end
 
+if ENV['HEADLESS']
+  require 'headless'
+  headless = Headless.new
+  headless.start
+  at_exit do
+    headless.destroy
+  end
+end
+
 driver ||= :firefox
 browser = Watir::Browser.new( driver.to_sym, browser_params)
 
